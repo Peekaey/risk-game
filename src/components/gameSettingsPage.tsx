@@ -20,7 +20,7 @@ export const GameSettingsPage: React.FC<GameSettingsPageProps> = ({setNumberOfPl
         newPlayerNames[index] = event.target.value;
         setPlayerNames(newPlayerNames);
         setplayerNamesCompleted(checkFieldsCompleted(newPlayerNames, numberOfPlayers));
-
+        console.log("Player Names: ", newPlayerNames, playerNamesCompleted, checkFieldsCompleted(newPlayerNames, numberOfPlayers));
 
     }
 
