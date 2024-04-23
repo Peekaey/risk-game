@@ -20,11 +20,13 @@ export const GameSettingsPage: React.FC<GameSettingsPageProps> = ({setNumberOfPl
         newPlayerNames[index] = event.target.value;
         setPlayerNames(newPlayerNames);
         setplayerNamesCompleted(checkFieldsCompleted(newPlayerNames, numberOfPlayers));
-        if (playerNamesCompleted) {
-            renderGameScreenScores(true);
-            renderGameSettingsScreen(false);
-        }
 
+
+    }
+
+    const handleStartGame = () => {
+        renderGameScreenScores(true);
+        renderGameSettingsScreen(false);
     }
 
     return(
@@ -42,7 +44,7 @@ export const GameSettingsPage: React.FC<GameSettingsPageProps> = ({setNumberOfPl
             </select>
         </div>
         {RenderPlayerNameInputFields(numberOfPlayers, handlePlayerNameChange, playerNames)}
-        {playerNamesCompleted && <button>Start Game</button>}
+        {playerNamesCompleted && <button onClick={handleStartGame}>Start Game</button>}
     </React.Fragment>
     );
 }
