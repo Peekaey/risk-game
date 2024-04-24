@@ -6,14 +6,20 @@ interface GameSettingsPageProps {
     playerNames: string[];
     renderGameScreenScores: (value:boolean) => void;
     renderGameSettingsScreen: (value:boolean) => void;
+    setStartingScore: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const GameSettingsPage: React.FC<GameSettingsPageProps> = ({setNumberOfPlayers, setPlayerNames, numberOfPlayers, playerNames, renderGameScreenScores, renderGameSettingsScreen})  => {
+export const GameSettingsPage: React.FC<GameSettingsPageProps> = ({setNumberOfPlayers, setPlayerNames, numberOfPlayers, playerNames, renderGameScreenScores, renderGameSettingsScreen, setStartingScore})  => {
     const[playerNamesCompleted, setplayerNamesCompleted] = useState(false);
     const handleNumberOfPlayersChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         console.log("Number of Players: ", event.target.value)
         setNumberOfPlayers(parseInt(event.target.value));
         RenderPlayerNameInputFields(parseInt(event.target.value), handlePlayerNameChange, playerNames);
+    }
+
+    const handleStartingScoreChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        console.log("Starting Score: ", event.target.value)
+        setStartingScore(parseInt(event.target.value));
     }
     const handlePlayerNameChange = (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
         const newPlayerNames = [...playerNames];
@@ -43,6 +49,22 @@ export const GameSettingsPage: React.FC<GameSettingsPageProps> = ({setNumberOfPl
                 <option value="5" style={{width: '10em'}}>5</option>
                 <option value="6" style={{width: '10em'}}>6</option>
             </select>
+            <br></br>
+            <div style={{marginTop: '1em'}}>
+            <label className="space-x-2" >Starting Score</label>
+            <br></br>
+            <select id="startingScore" className="rounded-md" style={{width: '10em'}} name="startingScore" onChange={handleStartingScoreChange}>
+                <option value="3" style={{width: '10em'}}>3</option>
+                <option value="4" style={{width: '10em'}}>4</option>
+                <option value="5" style={{width: '10em'}}>5</option>
+                <option value="6" style={{width: '10em'}}>6</option>
+                <option value="7" style={{width: '10em'}}>7</option>
+                <option value="8" style={{width: '10em'}}>8</option>
+                <option value="9" style={{width: '10em'}}>9</option>
+                <option value="10" style={{width: '10em'}}>10</option>
+                <option value="11" style={{width: '10em'}}>11</option>
+            </select>
+            </div>
         </div>
         {RenderPlayerNameInputFields(numberOfPlayers, handlePlayerNameChange, playerNames)}
         {playerNamesCompleted && <button style={{marginTop: '1em'}} onClick={handleStartGame}>Start Game</button>}

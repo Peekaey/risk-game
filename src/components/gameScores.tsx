@@ -7,6 +7,7 @@ interface GameScoresProps {
     renderStartRoundButton: boolean;
     setRenderGamePlayerTargetScreen: (value:boolean) => void;
     playerTurnCounter: number;
+    startingScore: number;
 }
 
 interface StartRoundButtonProps {
@@ -14,7 +15,7 @@ interface StartRoundButtonProps {
     setRenderGamePlayerTargetScreen: (value:boolean) => void;
 }
 
-export const GameScores: React.FC<GameScoresProps> = ({playerNames, setRenderStartRoundButton, renderStartRoundButton, setRenderGamePlayerTargetScreen, playerTurnCounter}) => {
+export const GameScores: React.FC<GameScoresProps> = ({playerNames, setRenderStartRoundButton, renderStartRoundButton, setRenderGamePlayerTargetScreen, playerTurnCounter, startingScore}) => {
 
     const currentPlayer = playerNames[playerTurnCounter];
 
@@ -25,7 +26,7 @@ export const GameScores: React.FC<GameScoresProps> = ({playerNames, setRenderSta
             <h1>Current Match Score</h1>
             {playerNames.map((playerName, index) => (
                 <div key={index}>
-                    <label id={`player${index}`}>{playerName} | Score: </label> <span id={`player-${index}-score`}>3</span>
+                    <label id={`player${index}`}>{playerName} | Score: </label> <span id={`player-${index}-score`}>{startingScore}</span>
                 </div>
             ))}
             </div>

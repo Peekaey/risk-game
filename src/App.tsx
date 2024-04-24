@@ -17,10 +17,14 @@ function App() {
     const [renderHomeScreen, setRenderHomeScreen] = useState(true);
     const [renderGameSettingsScreen, setRenderGameSettingsScreen] = useState(false);
     const [renderGameScreenScores, setRenderGameScreenScores] = useState(false);
-
-    const [renderStartRoundButton, setRenderStartRoundButton] = useState(true);
     const [renderGamePlayerTargetScreen, setRenderGamePlayerTargetScreen] = useState(false);
     const [renderGameBattleScreen, setRenderGameBattleScreen] = useState(false);
+
+    const [renderStartRoundButton, setRenderStartRoundButton] = useState(true);
+
+
+    // Starting Score
+    const [startingScore, setStartingScore] = useState<number>(0);
 
     const [attacker, setAttacker] = useState<number>(0);
     const [defender, setDefender] = useState<number>(0);
@@ -36,8 +40,8 @@ function App() {
   return (
     <>
       {renderHomeScreen && <HomePage renderHomeScreen={setRenderHomeScreen} renderGameSettingsScreen={setRenderGameSettingsScreen} />}
-        {renderGameSettingsScreen && <GameSettingsPage setNumberOfPlayers={setNumberOfPlayers} setPlayerNames={setPlayerNames} numberOfPlayers={numberOfPlayers} playerNames={playerNames} renderGameScreenScores={setRenderGameScreenScores} renderGameSettingsScreen={setRenderGameSettingsScreen}/>}
-        {renderGameScreenScores && <GameScores playerNames={playerNames} setRenderStartRoundButton={setRenderStartRoundButton} renderStartRoundButton={renderStartRoundButton} setRenderGamePlayerTargetScreen={setRenderGamePlayerTargetScreen} playerTurnCounter={playerTurnCounter}/>}
+        {renderGameSettingsScreen && <GameSettingsPage setNumberOfPlayers={setNumberOfPlayers} setPlayerNames={setPlayerNames} numberOfPlayers={numberOfPlayers} playerNames={playerNames} renderGameScreenScores={setRenderGameScreenScores} renderGameSettingsScreen={setRenderGameSettingsScreen} setStartingScore={setStartingScore}/>}
+        {renderGameScreenScores && <GameScores playerNames={playerNames} setRenderStartRoundButton={setRenderStartRoundButton} renderStartRoundButton={renderStartRoundButton} setRenderGamePlayerTargetScreen={setRenderGamePlayerTargetScreen} playerTurnCounter={playerTurnCounter} startingScore={startingScore}/>}
         {renderGamePlayerTargetScreen && <GamePlayerTargetPage playerTurnCounter={playerTurnCounter} setPlayerTurnCounter={setPlayerTurnsCounter} playerNames ={playerNames} setRenderGameBattleScreen={setRenderGameBattleScreen} attacker={attacker} setAttacker={setAttacker} defender={defender} setDefender={setDefender} renderGamePlayerTargetScreen={renderGamePlayerTargetScreen} setRenderGamePlayerTargetScreen={setRenderGamePlayerTargetScreen}/>}
         {renderGameBattleScreen && <Battle attacker={attacker} defender={defender} setRenderGameBattleScreen={setRenderGameBattleScreen}  playerNames={playerNames} setRenderGamePlayerTargetScreen={setRenderGamePlayerTargetScreen}/>}
     </>
