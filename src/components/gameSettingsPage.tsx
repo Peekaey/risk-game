@@ -34,17 +34,18 @@ export const GameSettingsPage: React.FC<GameSettingsPageProps> = ({setNumberOfPl
         <h1>Game Settings</h1>
         <h2>Please choose the number of players and their username</h2>
         <div className="card">
-            <label>Number of Players</label>
-            <select id="numberOfPlayers" name="numberOfPlayers" onChange={handleNumberOfPlayersChange}>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
+            <label className="space-x-2">Number of Players</label>
+            <br></br>
+            <select id="numberOfPlayers" className="rounded-md" style={{width: '10em'}} name="numberOfPlayers" onChange={handleNumberOfPlayersChange}>
+                <option value="2" style={{width: '10em'}}>2</option>
+                <option value="3" style={{width: '10em'}}>3</option>
+                <option value="4" style={{width: '10em'}}>4</option>
+                <option value="5" style={{width: '10em'}}>5</option>
+                <option value="6" style={{width: '10em'}}>6</option>
             </select>
         </div>
         {RenderPlayerNameInputFields(numberOfPlayers, handlePlayerNameChange, playerNames)}
-        {playerNamesCompleted && <button onClick={handleStartGame}>Start Game</button>}
+        {playerNamesCompleted && <button style={{marginTop: '1em'}} onClick={handleStartGame}>Start Game</button>}
     </React.Fragment>
     );
 }
@@ -53,9 +54,10 @@ const RenderPlayerNameInputFields = (numberOfPlayers: number, handlePlayerNameCh
     console.log("RenderPlayerNameInputFields Called")
     return Array(numberOfPlayers).fill(null).map((_, index) => {
         return (
-            <div className="card" key={index}>
-                <label>Player {index+1} Name</label>
-                <input type="text" id={`player${index+1}`} name={`player${index+1}`} value={playerNames[index] || ''} onChange={handlePlayerNameChange(index)} />
+            <div  key={index}>
+                <label className="space-x-2">Player {index+1} Name</label>
+                <br></br>
+                <input type="text" className="rounded-md"  id={`player${index+1}`} name={`player${index+1}`} value={playerNames[index] || ''} onChange={handlePlayerNameChange(index)} />
             </div>
         );
     });

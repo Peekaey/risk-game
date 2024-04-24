@@ -4,8 +4,12 @@ import {GameSettingsPage} from "./components/gameSettingsPage.tsx";
 import './App.css'
 import {GameScores} from "./components/gameScores.tsx";
 import { GamePlayerTargetPage } from './components/gamePlayerTargetPage.tsx';
+import {Battle} from "./helpers/battle.tsx";
 
-
+// TODO
+// - Update Game Scores Properly
+// - Fix Hosting
+//
 
 function App() {
 
@@ -17,6 +21,9 @@ function App() {
     const [renderStartRoundButton, setRenderStartRoundButton] = useState(true);
     const [renderGamePlayerTargetScreen, setRenderGamePlayerTargetScreen] = useState(false);
     const [renderGameBattleScreen, setRenderGameBattleScreen] = useState(false);
+
+    const [attacker, setAttacker] = useState<number>(0);
+    const [defender, setDefender] = useState<number>(0);
 
 
     //Player Turns Counter
@@ -30,8 +37,9 @@ function App() {
     <>
       {renderHomeScreen && <HomePage renderHomeScreen={setRenderHomeScreen} renderGameSettingsScreen={setRenderGameSettingsScreen} />}
         {renderGameSettingsScreen && <GameSettingsPage setNumberOfPlayers={setNumberOfPlayers} setPlayerNames={setPlayerNames} numberOfPlayers={numberOfPlayers} playerNames={playerNames} renderGameScreenScores={setRenderGameScreenScores} renderGameSettingsScreen={setRenderGameSettingsScreen}/>}
-        {renderGameScreenScores && <GameScores playerNames={playerNames} setRenderStartRoundButton={setRenderStartRoundButton} renderStartRoundButton={renderStartRoundButton} setRenderGamePlayerTargetScreen={setRenderGamePlayerTargetScreen}/>}
-        {renderGamePlayerTargetScreen && <GamePlayerTargetPage playerTurnCounter={playerTurnCounter} setPlayerTurnCounter={setPlayerTurnsCounter} playerNames ={playerNames}/>}
+        {renderGameScreenScores && <GameScores playerNames={playerNames} setRenderStartRoundButton={setRenderStartRoundButton} renderStartRoundButton={renderStartRoundButton} setRenderGamePlayerTargetScreen={setRenderGamePlayerTargetScreen} playerTurnCounter={playerTurnCounter}/>}
+        {renderGamePlayerTargetScreen && <GamePlayerTargetPage playerTurnCounter={playerTurnCounter} setPlayerTurnCounter={setPlayerTurnsCounter} playerNames ={playerNames} setRenderGameBattleScreen={setRenderGameBattleScreen} attacker={attacker} setAttacker={setAttacker} defender={defender} setDefender={setDefender} renderGamePlayerTargetScreen={renderGamePlayerTargetScreen} setRenderGamePlayerTargetScreen={setRenderGamePlayerTargetScreen}/>}
+        {renderGameBattleScreen && <Battle attacker={attacker} defender={defender} setRenderGameBattleScreen={setRenderGameBattleScreen}  playerNames={playerNames} setRenderGamePlayerTargetScreen={setRenderGamePlayerTargetScreen}/>}
     </>
   )
 }
