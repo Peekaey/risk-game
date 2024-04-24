@@ -23,17 +23,14 @@ function App() {
     const [renderStartRoundButton, setRenderStartRoundButton] = useState(true);
 
 
-    // Starting Score
-    const [startingScore, setStartingScore] = useState<number>(0);
-
+    const [startingScore, setStartingScore] = useState<number>(3);
     const [attacker, setAttacker] = useState<number>(0);
     const [defender, setDefender] = useState<number>(0);
 
 
-    //Player Turns Counter
+    //Individual Parameters
     const [playerTurnCounter, setPlayerTurnsCounter] = useState(0);
 
-    // Individual Parameters
     const [numberOfPlayers, setNumberOfPlayers] = useState<number>(2);
     const [playerNames, setPlayerNames] = useState<string[]>([]);
 

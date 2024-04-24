@@ -23,7 +23,7 @@ export const GameScores: React.FC<GameScoresProps> = ({playerNames, setRenderSta
     return (
         <React.Fragment>
             <div className="card">
-            <h1>Current Match Score</h1>
+            <h1>Current Match</h1>
             {playerNames.map((playerName, index) => (
                 <div key={index}>
                     <label id={`player${index}`}>{playerName} | Score: </label> <span id={`player-${index}-score`}>{startingScore}</span>
@@ -43,7 +43,6 @@ export const GameScores: React.FC<GameScoresProps> = ({playerNames, setRenderSta
 const StartRoundButton: React.FC<StartRoundButtonProps> = ({ setRenderStartRoundButton, setRenderGamePlayerTargetScreen }) => {
 
     const handleClick = () => {
-        console.log("Start Round Button Rendered");
         setRenderStartRoundButton(false);
         setRenderGamePlayerTargetScreen(true);
     }

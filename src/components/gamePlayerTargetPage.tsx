@@ -1,5 +1,4 @@
-import React, {useState} from "react";
-import {Battle} from "../helpers/battle.tsx";
+import React from "react";
 
 interface GamePlayerTargetPageProps {
     playerTurnCounter: number;
@@ -14,7 +13,7 @@ interface GamePlayerTargetPageProps {
     setRenderGamePlayerTargetScreen: (value:boolean) => void;
 }
 
-export const GamePlayerTargetPage: React.FC<GamePlayerTargetPageProps> = ({playerTurnCounter, setPlayerTurnCounter, playerNames, setRenderGameBattleScreen, attacker, setAttacker, defender, setDefender, renderGamePlayerTargetScreen, setRenderGamePlayerTargetScreen}) => {
+export const GamePlayerTargetPage: React.FC<GamePlayerTargetPageProps> = ({playerTurnCounter, setPlayerTurnCounter, playerNames, setRenderGameBattleScreen, setAttacker, setDefender, setRenderGamePlayerTargetScreen}) => {
 
     const handlePlayerTargetChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         console.log("Player Target: ", event.target.value);

@@ -31,9 +31,9 @@ export const Battle: React.FC<Battle> = ({attacker, defender, setRenderGameBattl
     const handleNextTurn = () => {
         setRenderGameBattleScreen(false);
         setRenderGamePlayerTargetScreen(true);
+        UpdateScores({attacker, defender, playerWinner});
     }
 
-    // If loading is
     if (loading) {
         return <h1>Loading...</h1>
     }
@@ -160,28 +160,17 @@ const RollDice = ({attacker, defender, setBattleLog, setBattleWinner, setPlayerW
         setBattleWinner(BattleWinner);
         setPlayerWinner(playerWinner);
 
-        if (playerWinner != null) {
-            UpdateScores({attacker, defender, playerWinner});
-        }
-
         resolve();
     });
     }
 
-    interface UpdateScoresProps {
-        attacker: number;
-        defender: number;
-        playerWinner: number;
-    }
-
-const UpdateScores = ({attacker, defender, playerWinner}: {attacker: number, defender: number, playerWinner: number}) => {
+    const UpdateScores = ({attacker, defender, playerWinner}: {attacker: number, defender: number, playerWinner: number}) => {
         const attackerScore = document.getElementById(`player-${attacker}-score`)
         const defenderScore = document.getElementById(`player-${defender}-score`);
 
         const currentAttackerScore = parseInt(attackerScore?.textContent || "0");
         const currentDefenderScore = parseInt(defenderScore?.textContent || "0");
 
-        console.log("Update Scores Called");
         if (playerWinner === attacker) {
             defenderScore!.textContent = (currentDefenderScore - 1).toString();
         } else {
@@ -189,10 +178,3 @@ const UpdateScores = ({attacker, defender, playerWinner}: {attacker: number, def
         }
 
     }
-
-
-
-
-
-
-
